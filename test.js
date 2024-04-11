@@ -22,6 +22,15 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.get('/dung', (req, res) => {
+    res.send('Hello Dung!')
+  })
+  
+  app.get('/dungvt', (req, res) => {
+    res.send('<h1>Hi Dungvt </h1>')
+  })
+  
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
