@@ -15,19 +15,33 @@
 // });
 
 const express = require('express')
-const app = express()
-const port = 3000
 
+const path = require('path') // khai báo thư viện liên quan đến đường dẫn dùng trong câu lệnh này app.set('views', path.join(__dirname,'views'))
+const app = express()
+const port = 3000 
+
+// Config template engine ejs
+app.set('views', path.join(__dirname,'views')) // tự động tìm đến thư mục view ở vị trí thư mục đang đứng
+app.set('view engine', 'ejs')
+
+
+//routes
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
 app.get('/dung', (req, res) => {
-    res.send('Hello Dung!')
+    // res.send('Hello Dung!')
+    res.render('sample.ejs')
   })
   
   app.get('/dungvt', (req, res) => {
-    res.send('<h1>Hi Dungvt </h1>')
+    const user = {
+      name: 'Vũ Tiến Dũng',
+      age: 22,
+      city: 'NTD'
+  };
+  res.render('sample.ejs', { user: user });
   })
   
 

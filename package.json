@@ -5,8 +5,7 @@
   "main": ".\test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bd":"node test.js"
-    
+    "bd": "node ./src/test.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +21,7 @@
   },
   "homepage": "https://github.com/vutiendung109/Backend-zero-public#readme",
   "dependencies": {
+    "ejs": "3.1.8",
     "express": "4.18.2"
   }
 }
