@@ -18,7 +18,7 @@ const express = require('express')
 
 const path = require('path') // khai báo thư viện liên quan đến đường dẫn dùng trong câu lệnh này app.set('views', path.join(__dirname,'views'))
 const app = express()
-const port = 3000 
+const port = 3001
 
 // Config template engine ejs
 app.set('views', path.join(__dirname,'views')) // tự động tìm đến thư mục view ở vị trí thư mục đang đứng
