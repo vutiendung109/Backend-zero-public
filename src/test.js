@@ -15,10 +15,12 @@
 // });
 
 const express = require('express')
-
+require('dotenv').config() // Khai báo dotenv
 const path = require('path') // khai báo thư viện liên quan đến đường dẫn dùng trong câu lệnh này app.set('views', path.join(__dirname,'views'))
 const app = express()
-const port = 3001
+// console.log('env check : ' , process.env)
+
+const port = process.env.port || 8080
 
 // Config template engine ejs
 app.set('views', path.join(__dirname,'views')) // tự động tìm đến thư mục view ở vị trí thư mục đang đứng

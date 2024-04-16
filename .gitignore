@@ -1,1 +1,4 @@
+
+# thư mục nào ko cần cập nhật git thì thêm tên vào file này
 node_modules
+.env
