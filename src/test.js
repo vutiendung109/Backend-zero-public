@@ -26,7 +26,10 @@ const port = process.env.port || 8080
 app.set('views', path.join(__dirname,'views')) // tự động tìm đến thư mục view ở vị trí thư mục đang đứng
 app.set('view engine', 'ejs')
 
-
+//config static files trong thư mục public
+// app.use(express.static('public')) -> sai
+// app.use('/static', express.static(path.join(__dirname, 'public'))) -> sai
+app.use( express.static(path.join(__dirname, 'public')))
 //routes
 app.get('/', (req, res) => {
   res.send('Hello World! with Dung')
