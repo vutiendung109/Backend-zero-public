@@ -14,42 +14,81 @@
 // console.log(`Server running at http://${hostname}:${port}/`);
 // });
 
-const express = require('express')
-require('dotenv').config() // Khai báo dotenv
-const path = require('path') // khai báo thư viện liên quan đến đường dẫn dùng trong câu lệnh này app.set('views', path.join(__dirname,'views'))
-const app = express()
-// console.log('env check : ' , process.env)
 
-const port = process.env.port || 8080
 
-// Config template engine ejs
-app.set('views', path.join(__dirname,'views')) // tự động tìm đến thư mục view ở vị trí thư mục đang đứng
-app.set('view engine', 'ejs')
 
-//config static files trong thư mục public
-// app.use(express.static('public')) -> sai
-// app.use('/static', express.static(path.join(__dirname, 'public'))) -> sai
-app.use( express.static(path.join(__dirname, 'public')))
-//routes
-app.get('/', (req, res) => {
-  res.send('Hello World! with Dung')
-})
+// require('dotenv').config() // Khai báo dotenv
+// const express = require('express')
+// const path = require('path') // khai báo thư viện liên quan đến đường dẫn dùng trong câu lệnh này app.set('views', path.join(__dirname,'views'))
+// const app = express()
+// // console.log('env check : ' , process.env)
+// const port = process.env.port || 8080
 
-app.get('/dung', (req, res) => {
-    // res.send('Hello Dung!')
-    res.render('sample.ejs')
-  })
+// // Config template engine ejs
+// app.set('views', path.join(__dirname,'views')) // tự động tìm đến thư mục view ở vị trí thư mục đang đứng
+// app.set('view engine', 'ejs')
+
+// //config static files trong thư mục public
+// // app.use(express.static('public')) -> sai
+// // app.use('/static', express.static(path.join(__dirname, 'public'))) -> sai
+// app.use( express.static(path.join(__dirname, 'public')))
+
+
+
+// //routes
+// app.get('/', (req, res) => {
+//   res.send('Hello World! with Dung')
+// })
+
+// app.get('/dung', (req, res) => {
+//     // res.send('Hello Dung!')
+//     res.render('sample.ejs')
+//   })
   
-  app.get('/dungvt', (req, res) => {
-    const user = {
-      name: 'Vũ Tiến Dũng',
-      age: 22,
-      city: 'NTD'
-  };
-  res.render('sample.ejs', { user: user });
-  })
+//   app.get('/dungvt', (req, res) => {
+//     const user = {
+//       name: 'Vũ Tiến Dũng',
+//       age: 22,
+//       city: 'NTD'
+//   };
+//   res.render('sample.ejs', { user: user });
+//   })
   
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
+
+
+      ///// ----- Sau khi áp dụng MVC ----
+
+      require('dotenv').config() // Khai báo dotenv
+      const express = require('express')
+      const path = require('path') // khai báo thư viện liên quan đến đường dẫn dùng trong câu lệnh này app.set('views', path.join(__dirname,'views'))
+      const app = express()
+      // Gọi hàm  configViewEngine 
+      const configViewEngine = require('./config/viewEngine');
+      //?? Gọi router ( ??? Tại sao khi chuyển hết các phần roter sang web.js và chưa gọi lại ở file này nhưng vẫn truy cập được link được -- có thể là brower đã lưu lại web vì sau khi thay đổi link trong web.js (là thay đổi tên các route) nhưng vẫn ko truy cập được vào mà truy cập được vào link cũ)
+      const webRouters = require('./routes/web') // thay dôdir tên cx được vì trong file web.js chỉ có 1 tham số là router nên trình duyệt tụ biết
+
+
+      // console.log('env check : ' , process.env)
+      const port = process.env.port || 8080
+
+      
+      // Config template engine ejs và config static files trong thư mục public
+      configViewEngine(app);
+
+       // Khai báo routes
+      app.use('/',webRouters)
+       
+      
+      
+      
+     
+    
+        
+      
+      app.listen(port, () => {
+        console.log(`Example app listening on port ${port}`)
+      })
