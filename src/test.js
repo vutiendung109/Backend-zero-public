@@ -66,6 +66,8 @@
       const express = require('express')
       const path = require('path') // khai báo thư viện liên quan đến đường dẫn dùng trong câu lệnh này app.set('views', path.join(__dirname,'views'))
       const app = express()
+      const mysql = require('mysql2')
+
       // Gọi hàm  configViewEngine 
       const configViewEngine = require('./config/viewEngine');
       //?? Gọi router ( ??? Tại sao khi chuyển hết các phần roter sang web.js và chưa gọi lại ở file này nhưng vẫn truy cập được link được -- có thể là brower đã lưu lại web vì sau khi thay đổi link trong web.js (là thay đổi tên các route) nhưng vẫn ko truy cập được vào mà truy cập được vào link cũ)
@@ -83,7 +85,23 @@
       app.use('/',webRouters)
        
       
-      
+      // Create the connection to database
+const connection = mysql.createConnection({
+  host: 'localhost',
+  port: 3307, // default 3306
+  user: 'root',
+  password:'123456',
+  database: 'hoidanit',
+});
+
+// A simple SELECT query
+connection.query(
+  'SELECT * FROM Users u' ,
+  function (err, results, fields) {
+    console.log('result: ',results); // results contains rows returned by server
+    console.log('field',fields); // fields contains extra meta data about results, if available
+  }
+);
       
      
     
