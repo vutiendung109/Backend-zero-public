@@ -62,11 +62,12 @@
 
       ///// ----- Sau khi áp dụng MVC ----
 
-      require('dotenv').config() // Khai báo dotenv
+      require('dotenv').config() // Khai báo dotenv , dùng dotenv thì các biến trong file .env mới dùng được
       const express = require('express')
       const path = require('path') // khai báo thư viện liên quan đến đường dẫn dùng trong câu lệnh này app.set('views', path.join(__dirname,'views'))
       const app = express()
       const mysql = require('mysql2')
+      const connection = require('./config/database')
 
       // Gọi hàm  configViewEngine 
       const configViewEngine = require('./config/viewEngine');
@@ -84,22 +85,14 @@
        // Khai báo routes
       app.use('/',webRouters)
        
-      
-      // Create the connection to database
-const connection = mysql.createConnection({
-  host: 'localhost',
-  port: 3307, // default 3306
-  user: 'root',
-  password:'123456',
-  database: 'hoidanit',
-});
+  
 
 // A simple SELECT query
 connection.query(
   'SELECT * FROM Users u' ,
   function (err, results, fields) {
     console.log('result: ',results); // results contains rows returned by server
-    console.log('field',fields); // fields contains extra meta data about results, if available
+    // console.log('field',fields); // fields contains extra meta data about results, if available
   }
 );
       
