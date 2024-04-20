@@ -76,7 +76,7 @@
 
 
       // console.log('env check : ' , process.env)
-      const port = process.env.port || 8080
+      const port = process.env.PORT || 8080
 
       
       // Config template engine ejs và config static files trong thư mục public
@@ -85,6 +85,13 @@
        // Khai báo routes
       app.use('/',webRouters)
        
+      // const connection = mysql.createConnection({
+      //   host: 'localhost',
+      //   port: '3307', // default 3306
+      //   user: 'root',
+      //   password:'123456',
+      //   database: 'hoidanit',
+      // });
   
 
 // A simple SELECT query
