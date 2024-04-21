@@ -81,7 +81,9 @@
       
       // Config template engine ejs và config static files trong thư mục public
       configViewEngine(app);
-
+      // Config req.body : Giúp lấy thồn tin từ form dựa trên thuộc tính name của các ô input
+      app.use(express.json()) // for json
+      app.use(express.urlencoded({ extended: true })) 
        // Khai báo routes
       app.use('/',webRouters)
        
@@ -95,13 +97,13 @@
   
 
 // A simple SELECT query
-connection.query(
-  'SELECT * FROM Users u' ,
-  function (err, results, fields) {
-    console.log('result: ',results); // results contains rows returned by server
-    // console.log('field',fields); // fields contains extra meta data about results, if available
-  }
-);
+// connection.query(
+//   'SELECT * FROM Users u' ,
+//   function (err, results, fields) {
+//     console.log('result: ',results); // results contains rows returned by server
+//     // console.log('field',fields); // fields contains extra meta data about results, if available
+//   }
+// );
       
      
     

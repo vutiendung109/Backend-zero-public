@@ -21,7 +21,11 @@ const getdungvt = (req,res) =>{
 
 }
 
+const postCreateUser =(req,res) =>{
+    res.send('create new user')
+    console.log("req.body : " ,req.body)
+}
 
 module.exports = {
-    getHome,getdung ,getdungvt
+    getHome,getdung ,getdungvt,postCreateUser
 }
