@@ -41,6 +41,10 @@ const postCreateUser =(req,res) =>{
       );
 }
 
+const getCreate =(req,res) =>{
+    res.render('create.ejs')
+}
+
 module.exports = {
-    getHome,getdung ,getdungvt,postCreateUser
+    getHome,getdung ,getdungvt,postCreateUser,getCreate
 }
