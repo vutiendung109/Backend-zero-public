@@ -21,24 +21,39 @@ const getdungvt = (req,res) =>{
 
 }
 
-const postCreateUser =(req,res) =>{
+// const postCreateUser =(req,res) =>{
+//     // res.send('create new user')
+//     let email = req.body.email;
+//     let name = req.body.myname;
+//     let city = req.body.city;
+//     // let{emai,name,city} =req.body;
+//     // console.log("email= " ,email,'name= ',name,'city= ',city)
+//     connection.query(
+//         'INSERT INTO  Users  (email, name, city) VALUES (?,?,?)',
+//         [email, name, city],
+
+//         function (err, results) {
+//           console.log(results);
+//           res.send('create user succeceed !');
+//         }
+//       );
+// }
+
+const  postCreateUser = async(req,res) =>{
     // res.send('create new user')
     let email = req.body.email;
     let name = req.body.myname;
     let city = req.body.city;
 
-    // let{emai,name,city} =req.body;
-    // console.log("email= " ,email,'name= ',name,'city= ',city)
-    
-    connection.query(
+    let [results,fields] = await connection.query(
         'INSERT INTO  Users  (email, name, city) VALUES (?,?,?)',
-        [email, name, city],
+          [email, name, city],
 
-        function (err, results) {
-          console.log(results);
-          res.send('create user succeceed !');
-        }
-      );
+    )
+
+    console.log('<<<check results' ,results)
+    
+    res.send('create user succeceed !');
 }
 
 const getCreate =(req,res) =>{

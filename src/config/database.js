@@ -1,6 +1,6 @@
 
 require('dotenv').config(); // Khai báo dotenv , dùng dotenv thì các biến trong file .env mới dùng được
-const mysql = require('mysql2')
+const mysql = require('mysql2/promise')
 //       Create the connection to database
       // const connection = mysql.createConnection({
       //   host: process.env.DB_HOST,
