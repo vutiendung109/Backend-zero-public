@@ -1,8 +1,11 @@
 const connection = require('../config/database')
-const getHome = (req,res) => {
+const {getAllUsers} = require('../services/CRUDServices')
+const getHome = async (req,res) => {
     //Nếu có xử lý data ở đây thì gọi model
     // res.send('Hello World! with Dung')
-    return res.render('home.ejs')
+    
+    let results =await getAllUsers();
+    return res.render('home.ejs',{listUsers: results})
 
 }
 
