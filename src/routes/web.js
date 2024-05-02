@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getHome, getdung,getdungvt,postCreateUser,getCreate } = require('../controllers/homeController')
+const {getHome, getdung,getdungvt,postCreateUser,getCreate ,getUpdateUser} = require('../controllers/homeController')
 
 
 // app.get('/', (req, res) => {
@@ -56,6 +56,7 @@ router.get('/dungvt',getdungvt)
 
 router.get('/create',getCreate)
 router.post('/create-user',postCreateUser)
+router.get('/update',getUpdateUser)
 
 
 

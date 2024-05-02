@@ -63,6 +63,10 @@ const getCreate =(req,res) =>{
     res.render('create.ejs')
 }
 
+const getUpdateUser =(req,res) =>{
+    res.render('edit.ejs')
+}
+
 module.exports = {
-    getHome,getdung ,getdungvt,postCreateUser,getCreate
+    getHome,getdung ,getdungvt,postCreateUser,getCreate,getUpdateUser
 }
