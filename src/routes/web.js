@@ -56,7 +56,7 @@ router.get('/dungvt',getdungvt)
 
 router.get('/create',getCreate)
 router.post('/create-user',postCreateUser)
-router.get('/update',getUpdateUser)
+router.get('/update/:idd',getUpdateUser) //Route param giúp lấy động thông tin tham số
 
 
 

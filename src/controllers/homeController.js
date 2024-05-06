@@ -64,6 +64,8 @@ const getCreate =(req,res) =>{
 }
 
 const getUpdateUser =(req,res) =>{
+    const userId = req.params.idd;
+    console.log('check param',req.params,userId)
     res.render('edit.ejs')
 }
 
