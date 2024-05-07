@@ -1,5 +1,5 @@
 const connection = require('../config/database')
-const {getAllUsers} = require('../services/CRUDServices')
+const {getAllUsers,getUserById} = require('../services/CRUDServices')
 const getHome = async (req,res) => {
     //Nếu có xử lý data ở đây thì gọi model
     // res.send('Hello World! with Dung')
@@ -63,10 +63,13 @@ const getCreate =(req,res) =>{
     res.render('create.ejs')
 }
 
-const getUpdateUser =(req,res) =>{
+const getUpdateUser = async (req,res) =>{
     const userId = req.params.idd;
-    console.log('check param',req.params,userId)
-    res.render('edit.ejs')
+    // console.log('check param',req.params,userId)
+    
+    
+   let user = await getUserById(userId); // nếu không có await ở đây thì hàm getUserById(userId) sẽ trả về rỗng 
+    res.render('edit.ejs',{userEdit : user}) //x <- y
 }
 
 module.exports = {
