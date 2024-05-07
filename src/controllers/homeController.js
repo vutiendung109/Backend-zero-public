@@ -87,6 +87,20 @@ const  postUpdateUser = async(req,res) =>{
     res.redirect('/')
 }
 
+const  postDeleteUser = async (req,res) =>{
+    const userId = req.params.idd;
+    // console.log('check param',req.params,userId)
+    
+    
+   let user = await getUserById(userId); // nếu không có await ở đây thì hàm getUserById(userId) sẽ trả về rỗng 
+    res.render('delete.ejs',{userEdit : user}) //x <- y
+    
+    
+}
+const postHandelRemoveUser = (req,res) =>{
+    res.send('xoa tc')
+}
+
 module.exports = {
-    getHome,getdung ,getdungvt,postCreateUser,getCreate,getUpdateUser,postUpdateUser
+    getHome,getdung ,getdungvt,postCreateUser,getCreate,getUpdateUser,postUpdateUser,postDeleteUser,postHandelRemoveUser
 }
