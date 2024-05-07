@@ -1,5 +1,5 @@
 const connection = require('../config/database')
-const {getAllUsers,getUserById,updateUserById} = require('../services/CRUDServices')
+const {getAllUsers,getUserById,updateUserById,deleteUserByID} = require('../services/CRUDServices')
 const getHome = async (req,res) => {
     //Nếu có xử lý data ở đây thì gọi model
     // res.send('Hello World! with Dung')
@@ -88,7 +88,7 @@ const  postUpdateUser = async(req,res) =>{
 }
 
 const  postDeleteUser = async (req,res) =>{
-    const userId = req.params.idd;
+    const userId = req.params.id;// lưu ý req.params.id thì id là tên phải trùng với tham số truyền động trong route
     // console.log('check param',req.params,userId)
     
     
@@ -97,8 +97,11 @@ const  postDeleteUser = async (req,res) =>{
     
     
 }
-const postHandelRemoveUser = (req,res) =>{
-    res.send('xoa tc')
+const postHandelRemoveUser = async(req,res) =>{
+    const id = req.body.userId;
+
+    await deleteUserByID(id);
+    res.redirect('/');
 }
 
 module.exports = {

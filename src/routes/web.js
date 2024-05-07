@@ -59,7 +59,7 @@ router.post('/create-user',postCreateUser)
 router.get('/update/:idd',getUpdateUser) //Route param giúp lấy động thông tin tham số
 router.post('/update-user',postUpdateUser)
 router.post('/delete-user/:id',postDeleteUser)
-router.post('/delete-user/',postHandelRemoveUser)
+router.post('/delete-user',postHandelRemoveUser)
 
 
 //export
