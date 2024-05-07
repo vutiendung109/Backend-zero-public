@@ -1,5 +1,5 @@
 const connection = require('../config/database')
-const {getAllUsers,getUserById} = require('../services/CRUDServices')
+const {getAllUsers,getUserById,updateUserById} = require('../services/CRUDServices')
 const getHome = async (req,res) => {
     //Nếu có xử lý data ở đây thì gọi model
     // res.send('Hello World! with Dung')
@@ -72,6 +72,21 @@ const getUpdateUser = async (req,res) =>{
     res.render('edit.ejs',{userEdit : user}) //x <- y
 }
 
+const  postUpdateUser = async(req,res) =>{
+    // res.send('create new user')
+    let email = req.body.email;
+    let name = req.body.myname;
+    let city = req.body.city;
+    let id = req.body.userId;
+    // console.log("email= " ,email,'name= ',name,'city= ',city,"Id",id) // xếp theo thứ tự khai báo : email,..id
+     await updateUserById(email,city,name,id);
+
+    // console.log('<<<check results' ,results)
+    
+    // res.send('update user succeceed !');
+    res.redirect('/')
+}
+
 module.exports = {
-    getHome,getdung ,getdungvt,postCreateUser,getCreate,getUpdateUser
+    getHome,getdung ,getdungvt,postCreateUser,getCreate,getUpdateUser,postUpdateUser
 }

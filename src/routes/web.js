@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getHome, getdung,getdungvt,postCreateUser,getCreate ,getUpdateUser} = require('../controllers/homeController')
+const {getHome, getdung,getdungvt,postCreateUser,getCreate ,getUpdateUser,postUpdateUser} = require('../controllers/homeController')
 
 
 // app.get('/', (req, res) => {
@@ -57,7 +57,7 @@ router.get('/dungvt',getdungvt)
 router.get('/create',getCreate)
 router.post('/create-user',postCreateUser)
 router.get('/update/:idd',getUpdateUser) //Route param giúp lấy động thông tin tham số
-
+router.post('/update-user',postUpdateUser)
 
 
 //export
