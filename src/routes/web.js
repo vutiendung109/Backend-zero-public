@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getHome, getdung,getdungvt,postCreateUser,getCreate ,getUpdateUser,postUpdateUser,postDeleteUser,postHandelRemoveUser} = require('../controllers/homeController')
+const {getHome, getdung,getdungvt,postCreateUser,getCreate ,getUpdateUser,postUpdateUser,postDeleteUser,postHandelRemoveUser,postLogin} = require('../controllers/homeController')
 
 
 // app.get('/', (req, res) => {
@@ -60,6 +60,8 @@ router.get('/update/:idd',getUpdateUser) //Route param giúp lấy động thôn
 router.post('/update-user',postUpdateUser)
 router.post('/delete-user/:id',postDeleteUser)
 router.post('/delete-user',postHandelRemoveUser)
+router.get('/login',(req,res) => {res.render('login.ejs')})
+router.post('/login-suc',postLogin)
 
 
 //export

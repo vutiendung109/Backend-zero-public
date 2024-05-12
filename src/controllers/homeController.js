@@ -104,6 +104,28 @@ const postHandelRemoveUser = async(req,res) =>{
     res.redirect('/');
 }
 
+const  postLogin = async(req,res) =>{
+    // res.send('create new user')
+    let email = req.body.email;
+    let password = req.body.password;
+    
+
+    let [results,fields] = await connection.query(
+        `SELECT * FROM Users u 
+        WHERE email = ? AND password = ?;`,
+          [email,password],
+
+    )
+
+    if (results.length > 0) {
+        // Nếu thông tin đăng nhập chính xác, chuyển hướng đến trang chủ
+        res.redirect('/');
+    } else {
+        // Nếu thông tin đăng nhập không chính xác, hiển thị thông báo lỗi
+        res.send('Thông tin đăng nhập không đúng. Vui lòng thử lại.');
+    }
+}
+
 module.exports = {
-    getHome,getdung ,getdungvt,postCreateUser,getCreate,getUpdateUser,postUpdateUser,postDeleteUser,postHandelRemoveUser
+    getHome,getdung ,getdungvt,postCreateUser,getCreate,getUpdateUser,postUpdateUser,postDeleteUser,postHandelRemoveUser,postLogin
 }

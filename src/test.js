@@ -68,6 +68,8 @@
       const app = express()
       const mysql = require('mysql2')
       const connection = require('./config/database')
+      const session = require('express-session');
+      const bodyParser = require('body-parser');
 
       // Gọi hàm  configViewEngine 
       const configViewEngine = require('./config/viewEngine');
@@ -105,9 +107,95 @@
 //   }
 // );
       
-     
+//      // Cấu hình session
+// app.use(session({
+//       secret: 'secret_key',
+//       resave: false,
+//       saveUninitialized: true
+//   }));
+  
+//   // Middleware kiểm tra đăng nhập
+//   const requireLogin = (req, res, next) => {
+//       if (!req.session.user) {
+//           // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
+//           return res.redirect('/login');
+//       }
+//       // Nếu người dùng đã đăng nhập, tiếp tục vào route tiếp theo
+//       next();
+//   };
+  
+//   // Route cho trang đăng nhập
+//   app.get('/login', (req, res) => {
+//       // Hiển thị trang đăng nhập
+//       res.send('Trang đăng nhập');
+//   });
+  
+//   // Áp dụng middleware requireLogin cho tất cả các route
+//   app.use(requireLogin);
+  
+//   // Route cho trang chủ
+//   app.get('/', (req, res) => {
+//       // Hiển thị trang chủ
+//       res.send('Trang chủ');
+//   });
+  
+//   // Route cho các router trong webRouters
+//   app.use('/', webRouters);
     
         
+
+// Sử dụng session middleware
+app.use(session({
+      secret: 'secret_key',
+      resave: false,
+      saveUninitialized: true
+  }));
+  
+  // Sử dụng bodyParser để lấy dữ liệu từ form POST
+  app.use(bodyParser.urlencoded({ extended: true }));
+  
+  // Middleware kiểm tra đăng nhập
+  const requireLogin = (req, res, next) => {
+      if (!req.session.user) {
+          // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
+          return res.redirect('/login');
+      }
+      // Nếu người dùng đã đăng nhập, tiếp tục vào route tiếp theo
+      next();
+  };
+  
+  // Route cho trang đăng nhập
+  app.get('/login', (req, res) => {
+      // Hiển thị trang đăng nhập
+      res.send('Trang đăng nhập');
+  });
+  
+  // Route xử lý đăng nhập
+  app.post('/login', (req, res) => {
+      // Xử lý logic đăng nhập, sau khi đăng nhập thành công, lưu thông tin đăng nhập vào session
+      req.session.user = req.body.username; // Ví dụ: lưu username vào session
+      res.redirect('/'); // Chuyển hướng đến trang chủ sau khi đăng nhập thành công
+  });
+  
+  // Route cho trang chủ
+  app.get('/', requireLogin, (req, res) => {
+      // Hiển thị trang chủ
+      res.send('Trang chủ');
+  });
+  
+  // Route cho trang đăng xuất
+  app.get('/logout', (req, res) => {
+      // Xóa thông tin đăng nhập khỏi session khi người dùng đăng xuất
+      req.session.destroy((err) => {
+          if (err) {
+              console.error('Lỗi khi đăng xuất:', err);
+              return res.redirect('/');
+          }
+          res.redirect('/login'); // Chuyển hướng đến trang đăng nhập sau khi đăng xuất thành công
+      });
+  });
+  
+
       
       app.listen(port, () => {
         console.log(`Example app listening on port ${port}`)
