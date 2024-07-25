@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang xem khoá học</title>
+
+    <!-- reset css -->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+
+    <!-- font poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- main css -->
+    <link rel="stylesheet" href="./assets/css/xemkh.css" />
+  </head>
+  <body>
+    <main>
+      <!-- Header -->
+      <header class="header fixed">
+        <div class="main-content">
+          <div class="body">
+            <!-- Logo -->
+            <img src="./assets/img/logo.svg" alt="lesson." class="logo" />
+
+            <!-- Nav -->
+            <nav class="nav">
+              <ul>
+                <li><a href="#!">Trang chủ</a></li>
+                <li class="active"><a href="#!">Khoá học</a></li>
+                <li><a href="#!">Tin tức</a></li>
+                <li><a href="#!">Về tác giả</a></li>
+              </ul>
+            </nav>
+
+            <!-- User Avatar -->
+            <img src="./assets/img/hero-test.webp" alt="User Avatar" class="user-avatar" />
+          </div>
+        </div>
+      </header>
+
+      <!-- Course Content -->
+      <section class="course-content">
+        <div class="main-content">
+          <div class="course-container">
+            <!-- Lesson List -->
+            <aside class="lesson-list">
+             <ul>
+                <li><a href="#" data-video-src="video1.mp4">Bài 1: Giới thiệu khoá học</a></li>
+                <li><a href="#" data-video-src="./assets/video/video-demo.mp4">Bài 2: Thiết lập code editor cơ bản</a></li>
+                <li><a href="#" data-video-src="video3.mp4">Bài 3: Các thẻ HTML cơ bản phần 1</a></li>
+                <li><a href="#" data-video-src="video4.mp4">Bài học 4</a></li>
+                <li><a href="#" data-video-src="video5.mp4">Bài học 5</a></li>
+                <li><a href="#" data-video-src="video6.mp4">Bài học 6</a></li>
+                <li><a href="#" data-video-src="video7.mp4">Bài học 7</a></li>
+                <li><a href="#" data-video-src="video8.mp4">Bài học 8</a></li>
+                <li><a href="#" data-video-src="video9.mp4">Bài học 9</a></li>
+                <li><a href="#" data-video-src="video10.mp4">Bài học 10</a></li>
+              </ul>
+            </aside>
+            <!-- Video Player -->
+            <div class="video-player">
+              <video id="course-video" controls>
+                <source src="video1.mp4" type="video/mp4" />
+                Trình duyệt của bạn không hỗ trợ thẻ video.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.querySelectorAll('.lesson-list a').forEach(item => {
+        item.addEventListener('click', event => {
+          event.preventDefault();
+          const videoSrc = item.getAttribute('data-video-src');
+          document.getElementById('course-video').src = videoSrc;
+        });
+      });
+    </script>
+  </body>
+</html>
